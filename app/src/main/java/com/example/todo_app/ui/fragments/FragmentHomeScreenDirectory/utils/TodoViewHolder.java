@@ -1,4 +1,4 @@
-package com.example.todo_app.ui.fragments.FragmentHomeScreenDirectory;
+package com.example.todo_app.ui.fragments.FragmentHomeScreenDirectory.utils;
 
 import android.view.View;
 import android.widget.ImageView;

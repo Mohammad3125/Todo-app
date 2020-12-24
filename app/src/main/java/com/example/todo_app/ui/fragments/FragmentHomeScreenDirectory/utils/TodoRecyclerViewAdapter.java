@@ -1,4 +1,4 @@
-package com.example.todo_app.ui.fragments.FragmentHomeScreenDirectory;
+package com.example.todo_app.ui.fragments.FragmentHomeScreenDirectory.utils;
 
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
@@ -9,7 +9,6 @@ import androidx.recyclerview.widget.ListAdapter;
 
 import com.example.todo_app.R;
 import com.example.todo_app.model.TodoModel;
-import com.example.todo_app.viewmodel.TodoViewModel;
 
 public class TodoRecyclerViewAdapter extends ListAdapter<TodoModel, TodoViewHolder> {
 

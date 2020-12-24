@@ -11,13 +11,9 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.todo_app.R;
 import com.example.todo_app.model.TodoModel;
-import com.example.todo_app.ui.fragments.FragmentHomeScreenDirectory.TodoDiffCallBack;
-import com.example.todo_app.ui.fragments.FragmentHomeScreenDirectory.TodoRecyclerViewAdapter;
 import com.example.todo_app.viewmodel.TodoViewModel;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.button.MaterialButton;

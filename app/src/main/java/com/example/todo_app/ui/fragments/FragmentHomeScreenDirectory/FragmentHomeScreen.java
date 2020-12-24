@@ -1,4 +1,4 @@
-package com.example.todo_app.ui.fragments;
+package com.example.todo_app.ui.fragments.FragmentHomeScreenDirectory;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -16,9 +16,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.todo_app.R;
-import com.example.todo_app.ui.fragments.FragmentHomeScreenDirectory.TodoDiffCallBack;
-import com.example.todo_app.ui.fragments.FragmentHomeScreenDirectory.TodoRecyclerViewAdapter;
-import com.example.todo_app.ui.fragments.FragmentHomeScreenDirectory.TodoViewHolder;
+import com.example.todo_app.ui.fragments.FragmentHomeScreenDirectory.FragmentHomeScreenDirections;
+import com.example.todo_app.ui.fragments.FragmentHomeScreenDirectory.utils.TodoDiffCallBack;
+import com.example.todo_app.ui.fragments.FragmentHomeScreenDirectory.utils.TodoRecyclerViewAdapter;
 import com.example.todo_app.viewmodel.TodoViewModel;
 
 public class FragmentHomeScreen extends Fragment {

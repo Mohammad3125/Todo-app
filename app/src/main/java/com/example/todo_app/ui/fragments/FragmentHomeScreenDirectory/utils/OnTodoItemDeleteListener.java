@@ -1,4 +1,4 @@
-package com.example.todo_app.ui.fragments.FragmentHomeScreenDirectory;
+package com.example.todo_app.ui.fragments.FragmentHomeScreenDirectory.utils;
 
 import com.example.todo_app.model.TodoModel;
 

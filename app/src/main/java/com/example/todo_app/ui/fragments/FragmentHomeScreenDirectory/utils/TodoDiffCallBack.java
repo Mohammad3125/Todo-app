@@ -1,4 +1,4 @@
-package com.example.todo_app.ui.fragments.FragmentHomeScreenDirectory;
+package com.example.todo_app.ui.fragments.FragmentHomeScreenDirectory.utils;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.DiffUtil;
