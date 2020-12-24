@@ -27,7 +27,7 @@
             app:shapeAppearance="?shapeAppearanceSmallComponent" />
 
         <TextView
-            android:id="@+id/textView3"
+            android:id="@+id/item_todo_name_text_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -37,7 +37,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/item_todo_detail_text_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -45,18 +45,18 @@
             android:text="Picking Grandma From Airport And Blah Blah Blah"
             android:textAppearance="?textAppearanceBody2"
             app:layout_constraintStart_toEndOf="@+id/shapeableImageView"
-            app:layout_constraintTop_toBottomOf="@+id/textView3" />
+            app:layout_constraintTop_toBottomOf="@+id/item_todo_name_text_view" />
 
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/item_todo_time_text_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="15dp"
             android:text="12pm"
             android:textAppearance="?textAppearanceBody1"
-            app:layout_constraintBottom_toBottomOf="@+id/textView"
-            app:layout_constraintStart_toEndOf="@+id/textView"
-            app:layout_constraintTop_toTopOf="@+id/textView" />
+            app:layout_constraintBottom_toBottomOf="@+id/item_todo_detail_text_view"
+            app:layout_constraintStart_toEndOf="@+id/item_todo_detail_text_view"
+            app:layout_constraintTop_toTopOf="@+id/item_todo_detail_text_view" />
 
         <ImageView
             android:id="@+id/item_todo_delete_icon"

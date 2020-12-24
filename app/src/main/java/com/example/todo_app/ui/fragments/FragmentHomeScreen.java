@@ -10,14 +10,33 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.todo_app.R;
+import com.example.todo_app.ui.fragments.FragmentHomeScreenDirectory.TodoDiffCallBack;
+import com.example.todo_app.ui.fragments.FragmentHomeScreenDirectory.TodoRecyclerViewAdapter;
+import com.example.todo_app.ui.fragments.FragmentHomeScreenDirectory.TodoViewHolder;
+import com.example.todo_app.viewmodel.TodoViewModel;
 
 public class FragmentHomeScreen extends Fragment {
 
     Button changeThemeButton;
     Button newNoteButton;
+
+    RecyclerView recyclerView;
+    TodoRecyclerViewAdapter recyclerViewAdapter;
+    TodoViewModel todoViewModel;
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        todoViewModel = new ViewModelProvider(requireActivity()).get(TodoViewModel.class);
+
+
+    }
 
     @Override
     public void onStart() {
@@ -31,13 +50,24 @@ public class FragmentHomeScreen extends Fragment {
         });
 
 
-
         newNoteButton.setOnClickListener(v1 ->
                 Navigation.findNavController(v1).
                         navigate(FragmentHomeScreenDirections.actionFragmentHomeScreenToFragmentMakeTodoList()));
 
 
 
+    }
+
+    private void initRecyclerView() {
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(requireContext());
+
+        recyclerView.setLayoutManager(linearLayoutManager);
+
+        recyclerView.setHasFixedSize(false);
+
+        recyclerViewAdapter = new TodoRecyclerViewAdapter(new TodoDiffCallBack());
+
+        recyclerView.setAdapter(recyclerViewAdapter);
 
     }
 
@@ -45,6 +75,13 @@ public class FragmentHomeScreen extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        todoViewModel.getNotes().observe(getViewLifecycleOwner(), notes ->
+                recyclerViewAdapter.submitList(notes));
+
+
+        recyclerViewAdapter.setOnTodoItemDeleteListener(item ->
+                todoViewModel.delete(item)
+        );
 
     }
 
@@ -55,12 +92,15 @@ public class FragmentHomeScreen extends Fragment {
 
         initView(view);
 
+        initRecyclerView();
+
         return view;
     }
 
     private void initView(View view) {
         changeThemeButton = view.findViewById(R.id.button_change_theme);
         newNoteButton = view.findViewById(R.id.button_new_note);
+        recyclerView = view.findViewById(R.id.todo_recycler_view);
     }
 }
 

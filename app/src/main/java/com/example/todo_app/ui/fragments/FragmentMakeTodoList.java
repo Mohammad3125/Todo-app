@@ -11,9 +11,13 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.todo_app.R;
 import com.example.todo_app.model.TodoModel;
+import com.example.todo_app.ui.fragments.FragmentHomeScreenDirectory.TodoDiffCallBack;
+import com.example.todo_app.ui.fragments.FragmentHomeScreenDirectory.TodoRecyclerViewAdapter;
 import com.example.todo_app.viewmodel.TodoViewModel;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.button.MaterialButton;
@@ -35,6 +39,7 @@ public class FragmentMakeTodoList extends Fragment {
     String time;
 
 
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -43,12 +48,19 @@ public class FragmentMakeTodoList extends Fragment {
         return view;
     }
 
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        todoViewModel = new ViewModelProvider(this).get(TodoViewModel.class);
+    }
+
     private void initViews(View view) {
         toolbar = view.findViewById(R.id.fragment_create_todo_tool_bar);
         pickTimeButton = view.findViewById(R.id.button_pick_time);
         showTimeTextView = view.findViewById(R.id.text_view_chosen_time);
         todoNameEditText = view.findViewById(R.id.note_name_edit_text);
         todoDetailEditText = view.findViewById(R.id.note_detail_edit_text);
+
     }
 
 
@@ -64,7 +76,6 @@ public class FragmentMakeTodoList extends Fragment {
     public void onStart() {
         super.onStart();
 
-        todoViewModel = new ViewModelProvider(this).get(TodoViewModel.class);
 
         pickTimeButton.setOnClickListener(v ->
         {
@@ -93,5 +104,10 @@ public class FragmentMakeTodoList extends Fragment {
             }
             return true;
         });
+
+
+
+
+
     }
 }
