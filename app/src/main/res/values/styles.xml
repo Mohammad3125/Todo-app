@@ -35,8 +35,5 @@
         <item name="itemTextAppearance">?attr/textAppearanceBody2</item>
     </style>
 
-    <style name="ToolBarPrimaryForPrimarySurface" parent="Widget.MaterialComponents.Toolbar.PrimarySurface">
-        <item name="android:elevation" tools:ignore="NewApi">0dp</item>
-    </style>
 
 </resources>

@@ -15,7 +15,11 @@
             app:destination="@id/fragmentViewTodoList" />
         <action
             android:id="@+id/action_fragmentHomeScreen_to_fragmentMakeTodoList"
-            app:destination="@id/fragmentMakeTodoList" />
+            app:destination="@id/fragmentMakeTodoList"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
     <fragment
         android:id="@+id/fragmentMakeTodoList"
