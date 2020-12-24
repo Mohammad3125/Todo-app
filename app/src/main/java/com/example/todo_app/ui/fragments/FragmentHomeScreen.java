@@ -10,12 +10,14 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 
 import com.example.todo_app.R;
 
 public class FragmentHomeScreen extends Fragment {
 
     Button changeThemeButton;
+    Button newNoteButton;
 
     @Override
     public void onStart() {
@@ -27,6 +29,16 @@ public class FragmentHomeScreen extends Fragment {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
             else AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         });
+
+
+
+        newNoteButton.setOnClickListener(v1 ->
+                Navigation.findNavController(v1).
+                        navigate(FragmentHomeScreenDirections.actionFragmentHomeScreenToFragmentMakeTodoList()));
+
+
+
+
     }
 
     @Override
@@ -48,6 +60,7 @@ public class FragmentHomeScreen extends Fragment {
 
     private void initView(View view) {
         changeThemeButton = view.findViewById(R.id.button_change_theme);
+        newNoteButton = view.findViewById(R.id.button_new_note);
     }
 }
 

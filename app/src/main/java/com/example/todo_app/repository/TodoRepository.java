@@ -4,21 +4,21 @@ import android.app.Application;
 
 import androidx.lifecycle.LiveData;
 
+import com.example.todo_app.model.TodoDOA;
 import com.example.todo_app.model.TodoModel;
-import com.example.todo_app.model.TodoModelDOA;
-import com.example.todo_app.model.database.TodoRoomDatabase;
+import com.example.todo_app.model.database.AppDatabase;
 
 import java.util.List;
 
 public class TodoRepository {
 
-    public TodoModelDOA todoModelDOA;
+    public TodoDOA todoDOA;
     private final LiveData<List<TodoModel>> notes;
 
     public TodoRepository(Application application) {
-        TodoRoomDatabase database = TodoRoomDatabase.Companion.getDatabase(application);
-        todoModelDOA = database.todoDao();
-        notes = todoModelDOA.getTodoList();
+        AppDatabase database = AppDatabase.getINSTANCE(application);
+        todoDOA = database.todoDOA();
+        notes = todoDOA.getTodoList();
     }
 
     public LiveData<List<TodoModel>> getNotes() {
@@ -26,18 +26,18 @@ public class TodoRepository {
     }
 
     public void insert(TodoModel todo) {
-        TodoRoomDatabase.Companion.getExecutorService().execute(
-                () -> todoModelDOA.insert(todo)
+        AppDatabase.databaseExecutorService.execute(
+                () -> todoDOA.insert(todo)
         );
     }
 
     public void deleteAll() {
-        todoModelDOA.deleteAll();
+        todoDOA.deleteAll();
     }
 
-    public void delete(int id) {
-        TodoRoomDatabase.Companion.getExecutorService().execute(
-                () -> todoModelDOA.delete(id)
+    public void delete(TodoModel todoModel) {
+        AppDatabase.databaseExecutorService.execute(
+                () -> todoDOA.delete(todoModel)
         );
     }
 

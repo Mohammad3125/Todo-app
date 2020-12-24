@@ -7,7 +7,6 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 
 import com.example.todo_app.model.TodoModel;
-import com.example.todo_app.model.database.TodoRoomDatabase;
 import com.example.todo_app.repository.TodoRepository;
 
 import java.util.List;
@@ -35,8 +34,8 @@ public class TodoViewModel extends AndroidViewModel {
         todoRepository.deleteAll();
     }
 
-    public void delete(int id) {
-        todoRepository.delete(id);
+    public void delete(TodoModel todoModel) {
+        todoRepository.delete(todoModel);
     }
 
 }
