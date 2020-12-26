@@ -43,7 +43,7 @@ public class TodoViewHolder extends RecyclerView.ViewHolder {
         );
 
         view.setOnClickListener(v -> {
-            onTodoItemClickListener.onClick(todoModel.id);
+            onTodoItemClickListener.onClick(todoModel.id, view);
         });
     }
 

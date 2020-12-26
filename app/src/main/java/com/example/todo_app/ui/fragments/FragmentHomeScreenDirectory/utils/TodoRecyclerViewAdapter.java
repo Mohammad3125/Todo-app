@@ -22,8 +22,11 @@ public class TodoRecyclerViewAdapter extends ListAdapter<TodoModel, TodoViewHold
     @NonNull
     @Override
     public TodoViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        parent.setTransitionGroup(true);
+
         return new TodoViewHolder(LayoutInflater.from(parent.getContext()).
                 inflate(R.layout.item_todo_recycler_view, parent, false));
+
     }
 
     @Override

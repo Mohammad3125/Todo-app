@@ -28,5 +28,9 @@
     <fragment
         android:id="@+id/fragmentViewTodoList"
         android:name="com.example.todo_app.ui.fragments.FragmentViewTodoList"
-        android:label="FragmentViewTodoList" />
+        android:label="FragmentViewTodoList" >
+        <argument
+            android:name="itemId"
+            app:argType="integer" />
+    </fragment>
 </navigation>

@@ -15,6 +15,9 @@ public interface TodoDOA {
     @Query("SELECT * FROM todo_table")
     LiveData<List<TodoModel>> getTodoList();
 
+    @Query("SELECT * FROM todo_table WHERE id =:itemId")
+    TodoModel getTodo(int itemId);
+
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     void insert(TodoModel todoModel);
 

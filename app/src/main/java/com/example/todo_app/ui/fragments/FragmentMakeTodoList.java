@@ -8,9 +8,11 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.app.SharedElementCallback;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.todo_app.R;
 import com.example.todo_app.model.TodoModel;
@@ -20,6 +22,9 @@ import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.timepicker.MaterialTimePicker;
 import com.google.android.material.timepicker.TimeFormat;
+
+import java.util.List;
+import java.util.Map;
 
 
 public class FragmentMakeTodoList extends Fragment {
@@ -48,6 +53,9 @@ public class FragmentMakeTodoList extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         todoViewModel = new ViewModelProvider(this).get(TodoViewModel.class);
+
+
+
     }
 
     private void initViews(View view) {

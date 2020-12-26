@@ -25,6 +25,10 @@ public class TodoRepository {
         return notes;
     }
 
+    public TodoModel getNote(int id) {
+        return todoDOA.getTodo(id);
+    }
+
     public void insert(TodoModel todo) {
         AppDatabase.databaseExecutorService.execute(
                 () -> todoDOA.insert(todo)

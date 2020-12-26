@@ -26,6 +26,10 @@ public class TodoViewModel extends AndroidViewModel {
         return notes;
     }
 
+    public TodoModel getNote(int id) {
+        return todoRepository.getNote(id);
+    }
+
     public void insert(TodoModel todo) {
         todoRepository.insert(todo);
     }
