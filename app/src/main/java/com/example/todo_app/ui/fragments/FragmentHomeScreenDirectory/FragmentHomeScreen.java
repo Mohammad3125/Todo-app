@@ -30,6 +30,7 @@ import com.google.android.material.transition.MaterialElevationScale;
 
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 public class FragmentHomeScreen extends Fragment {
 
@@ -48,8 +49,9 @@ public class FragmentHomeScreen extends Fragment {
         todoViewModel = new ViewModelProvider(requireActivity()).get(TodoViewModel.class);
 
 
-        setReenterTransition(new MaterialContainerTransform());
-        setExitTransition(new MaterialContainerTransform());
+        setReenterTransition(new MaterialElevationScale(true));
+
+        setExitTransition(new MaterialElevationScale(false));
 
         setExitSharedElementCallback(new SharedElementCallback() {
             @Override
@@ -83,13 +85,10 @@ public class FragmentHomeScreen extends Fragment {
 
 
         recyclerViewAdapter.setOnTodoItemClickListener((itemId, itemView) -> {
-            itemView.setTransitionName("item" + String.valueOf(itemId));
-
 
             FragmentNavigator.Extras extras = new FragmentNavigator.Extras.Builder()
                     .addSharedElement(itemView, itemView.getTransitionName())
                     .build();
-
 
 
             setExitTransition(new MaterialElevationScale(false));
@@ -102,6 +101,7 @@ public class FragmentHomeScreen extends Fragment {
         });
 
     }
+
 
     private void initRecyclerView() {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(requireContext());
@@ -120,13 +120,16 @@ public class FragmentHomeScreen extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        todoViewModel.getNotes().observe(getViewLifecycleOwner(), notes ->
-                recyclerViewAdapter.submitList(notes));
 
+        todoViewModel.getNotes().observe(getViewLifecycleOwner(), notes -> {
+            recyclerViewAdapter.submitList(notes);
+        });
 
         recyclerViewAdapter.setOnTodoItemDeleteListener(item ->
                 todoViewModel.delete(item)
         );
+
+        recyclerViewAdapter.setOnItemsAdded(this::startPostponedEnterTransition);
 
 
     }
@@ -134,13 +137,14 @@ public class FragmentHomeScreen extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        startPostponedEnterTransition();
-
         View view = inflater.inflate(R.layout.fragment_main_page, container, false);
+
 
         initView(view);
 
         initRecyclerView();
+
+        postponeEnterTransition();
 
         return view;
     }

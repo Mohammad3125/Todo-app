@@ -39,7 +39,7 @@ public class FragmentViewTodoList extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        startPostponedEnterTransition();
+        postponeEnterTransition();
         View view = inflater.inflate(R.layout.fragment_view_todo_list, container, false);
         initViews(view);
         todoViewModel = new ViewModelProvider(requireActivity()).get(TodoViewModel.class);
@@ -60,7 +60,8 @@ public class FragmentViewTodoList extends Fragment {
         MaterialContainerTransform containerTransform = new MaterialContainerTransform();
         containerTransform.setDrawingViewId(R.id.nav_container);
         containerTransform.setScrimColor(Color.TRANSPARENT);
-        containerTransform.setDuration(2000);
+        containerTransform.setDuration(Integer.parseInt(getString(R.string.transition_time)));
+        containerTransform.setAllContainerColors(MaterialColors.getColor(requireContext(), R.attr.colorSurface, R.attr.colorError));
         setSharedElementEnterTransition(containerTransform);
 
         setEnterSharedElementCallback(new SharedElementCallback() {
@@ -69,9 +70,6 @@ public class FragmentViewTodoList extends Fragment {
                 sharedElements.put(names.get(0), cardView);
             }
         });
-
-        setExitTransition(containerTransform);
-
     }
 
     @Override
@@ -86,6 +84,8 @@ public class FragmentViewTodoList extends Fragment {
         todoName.setText(todoModel.name);
         todoDetail.setText(todoModel.text);
         todoTime.setText(todoModel.time);
+
+        startPostponedEnterTransition();
 
     }
 

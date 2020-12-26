@@ -19,6 +19,7 @@ public class TodoViewHolder extends RecyclerView.ViewHolder {
     ImageView deleteTodoIconImageView;
 
 
+
     public TodoViewHolder(@NonNull View itemView) {
         super(itemView);
         initView(itemView);
@@ -33,10 +34,12 @@ public class TodoViewHolder extends RecyclerView.ViewHolder {
 
     }
 
-    public void bind(TodoModel todoModel, OnTodoItemClickListener onTodoItemClickListener, OnTodoItemDeleteListener onTodoItemDeleteListener) {
+    public void bind(TodoModel todoModel, OnTodoItemClickListener onTodoItemClickListener, OnTodoItemDeleteListener onTodoItemDeleteListener , OnItemsAdded onItemsAdded) {
         todoNameTextView.setText(todoModel.name);
         todoDetailTextView.setText(todoModel.text);
         todoTimeTextView.setText(todoModel.time);
+
+        view.setTransitionName("item" + String.valueOf(todoModel.id));
 
         deleteTodoIconImageView.setOnClickListener(v1 ->
                 onTodoItemDeleteListener.onDelete(todoModel)
@@ -45,6 +48,8 @@ public class TodoViewHolder extends RecyclerView.ViewHolder {
         view.setOnClickListener(v -> {
             onTodoItemClickListener.onClick(todoModel.id, view);
         });
+
+        onItemsAdded.onItemAdded();
     }
 
 }

@@ -8,9 +8,9 @@
     android:layout_marginTop="10dp"
     android:layout_marginEnd="20dp"
     android:orientation="horizontal"
-    android:translationZ="12dp"
+    android:translationZ="3dp"
     android:id="@+id/item_shared_element"
-    app:cardElevation="12dp">
+    app:cardElevation="1dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -33,7 +33,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:text="Grandmother"
+            android:text="Example Name"
             android:textAppearance="?textAppearanceBody1"
             app:layout_constraintStart_toEndOf="@+id/shapeableImageView"
             app:layout_constraintTop_toTopOf="parent" />
@@ -44,7 +44,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:ems="12"
-            android:text="Picking Grandma From Airport And Blah Blah Blah"
+            android:text="Example name Example name Example name "
             android:textAppearance="?textAppearanceBody2"
             app:layout_constraintStart_toEndOf="@+id/shapeableImageView"
             app:layout_constraintTop_toBottomOf="@+id/item_todo_name_text_view" />

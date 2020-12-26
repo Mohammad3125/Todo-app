@@ -14,6 +14,7 @@ public class TodoRecyclerViewAdapter extends ListAdapter<TodoModel, TodoViewHold
 
     OnTodoItemDeleteListener onTodoItemDeleteListener;
     OnTodoItemClickListener onTodoItemClickListener;
+    OnItemsAdded onItemsAdded;
 
     public TodoRecyclerViewAdapter(@NonNull DiffUtil.ItemCallback<TodoModel> diffCallback) {
         super(diffCallback);
@@ -22,8 +23,6 @@ public class TodoRecyclerViewAdapter extends ListAdapter<TodoModel, TodoViewHold
     @NonNull
     @Override
     public TodoViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        parent.setTransitionGroup(true);
-
         return new TodoViewHolder(LayoutInflater.from(parent.getContext()).
                 inflate(R.layout.item_todo_recycler_view, parent, false));
 
@@ -31,7 +30,7 @@ public class TodoRecyclerViewAdapter extends ListAdapter<TodoModel, TodoViewHold
 
     @Override
     public void onBindViewHolder(@NonNull TodoViewHolder holder, int position) {
-        holder.bind(getItem(position), onTodoItemClickListener, onTodoItemDeleteListener);
+        holder.bind(getItem(position), onTodoItemClickListener, onTodoItemDeleteListener,onItemsAdded);
     }
 
     public void setOnTodoItemClickListener(OnTodoItemClickListener onTodoItemClickListener) {
@@ -40,6 +39,10 @@ public class TodoRecyclerViewAdapter extends ListAdapter<TodoModel, TodoViewHold
 
     public void setOnTodoItemDeleteListener(OnTodoItemDeleteListener onTodoItemDeleteListener) {
         this.onTodoItemDeleteListener = onTodoItemDeleteListener;
+    }
+
+    public void setOnItemsAdded(OnItemsAdded onItemsAdded) {
+        this.onItemsAdded = onItemsAdded;
     }
 }
 

@@ -112,4 +112,5 @@
     <string name="text_appearance_caption_label">Caption</string>
     <string name="text_appearance_overline_label">Overline</string>
     <string name="transition_name">shared_card_view</string>
+    <string name="transition_time">1000</string>
 </resources>
