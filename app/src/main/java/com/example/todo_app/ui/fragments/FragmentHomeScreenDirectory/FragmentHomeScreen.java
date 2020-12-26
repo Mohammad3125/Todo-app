@@ -23,10 +23,13 @@ import com.example.todo_app.ui.fragments.FragmentHomeScreenDirectory.utils.TodoD
 import com.example.todo_app.ui.fragments.FragmentHomeScreenDirectory.utils.TodoRecyclerViewAdapter;
 import com.example.todo_app.viewmodel.TodoViewModel;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+import com.google.android.material.transition.Hold;
 import com.google.android.material.transition.MaterialElevationScale;
 
 import java.util.List;
 import java.util.Map;
+
+import kotlinx.coroutines.AwaitKt;
 
 public class FragmentHomeScreen extends Fragment {
 
@@ -38,16 +41,16 @@ public class FragmentHomeScreen extends Fragment {
     TodoViewModel todoViewModel;
 
     private int selectedPosition;
+    private int defaultNightMode;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         todoViewModel = new ViewModelProvider(requireActivity()).get(TodoViewModel.class);
 
+        setExitTransition(null);
 
         setReenterTransition(new MaterialElevationScale(true));
-
-        setExitTransition(new MaterialElevationScale(false));
 
         setExitSharedElementCallback(new SharedElementCallback() {
             @Override
@@ -68,7 +71,7 @@ public class FragmentHomeScreen extends Fragment {
         super.onStart();
         changeThemeButton.setOnClickListener(v ->
         {
-            int defaultNightMode = AppCompatDelegate.getDefaultNightMode();
+            defaultNightMode = AppCompatDelegate.getDefaultNightMode();
             if (defaultNightMode != AppCompatDelegate.MODE_NIGHT_YES)
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
             else AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
@@ -86,8 +89,9 @@ public class FragmentHomeScreen extends Fragment {
                     .addSharedElement(itemView, itemView.getTransitionName())
                     .build();
 
-
-            setExitTransition(new MaterialElevationScale(false));
+            if (defaultNightMode != AppCompatDelegate.MODE_NIGHT_YES)
+                setExitTransition(new MaterialElevationScale(false));
+            else setExitTransition(new Hold());
 
             selectedPosition = itemId;
 
@@ -117,9 +121,8 @@ public class FragmentHomeScreen extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
 
-        todoViewModel.getNotes().observe(getViewLifecycleOwner(), notes -> {
-            recyclerViewAdapter.submitList(notes);
-        });
+        todoViewModel.getNotes().observe(getViewLifecycleOwner(), notes ->
+                recyclerViewAdapter.submitList(notes));
 
         recyclerViewAdapter.setOnTodoItemDeleteListener(item -> {
             AlertDialog dialog = new MaterialAlertDialogBuilder(requireContext(), R.style.AlertDialogStyle).setTitle("Deleting Item")

@@ -8,46 +8,36 @@
     android:layout_marginTop="10dp"
     android:layout_marginEnd="20dp"
     android:orientation="horizontal"
-    android:translationZ="3dp"
+    android:background="?colorSurface"
+    android:translationZ="2dp"
     android:id="@+id/item_shared_element"
-    app:cardElevation="3dp">
+    app:cardElevation="2dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
 
-        <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/shapeableImageView"
-            android:layout_width="36dp"
-            android:layout_height="36dp"
-            android:layout_gravity="center_vertical"
-            android:background="?colorPrimary"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:shapeAppearance="?shapeAppearanceSmallComponent" />
-
         <TextView
             android:id="@+id/item_todo_name_text_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
+            android:layout_marginStart="8dp"
             android:text="Example Name"
-            android:textColor="?colorSecondary"
             android:textAppearance="?textAppearanceBody1"
-            app:layout_constraintStart_toEndOf="@+id/shapeableImageView"
+            android:textColor="?colorPrimary"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/item_todo_detail_text_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
+            android:layout_marginStart="8dp"
             android:ems="12"
             android:text="Example name Example name Example name "
             android:textAppearance="?textAppearanceBody2"
-            app:layout_constraintStart_toEndOf="@+id/shapeableImageView"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/item_todo_name_text_view" />
 
         <TextView
@@ -57,7 +47,7 @@
             android:layout_marginEnd="16dp"
             android:textColor="?colorPrimary"
             android:text="12pm"
-            android:textAppearance="?textAppearanceBody1"
+            android:textAppearance="?textAppearanceHeadline5"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/item_todo_delete_icon"
             app:layout_constraintTop_toTopOf="parent" />
