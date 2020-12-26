@@ -81,9 +81,12 @@ public class FragmentViewTodoList extends Fragment {
 
         TodoModel todoModel = todoViewModel.getNote(FragmentViewTodoListArgs.fromBundle(getArguments()).getItemId());
 
-        todoName.setText(todoModel.name);
+        String name = todoModel.name;
+        todoName.setText(name);
         todoDetail.setText(todoModel.text);
         todoTime.setText(todoModel.time);
+
+        toolbar.setTitle(name);
 
         startPostponedEnterTransition();
 
