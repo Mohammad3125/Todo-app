@@ -1,6 +1,5 @@
 package com.example.todo_app.ui.fragments.FragmentHomeScreenDirectory;
 
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +8,7 @@ import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.app.SharedElementCallback;
 import androidx.fragment.app.Fragment;
@@ -19,18 +19,14 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.todo_app.R;
-import com.example.todo_app.ui.activities.MainActivity;
-import com.example.todo_app.ui.fragments.FragmentHomeScreenDirectory.FragmentHomeScreenDirections;
 import com.example.todo_app.ui.fragments.FragmentHomeScreenDirectory.utils.TodoDiffCallBack;
 import com.example.todo_app.ui.fragments.FragmentHomeScreenDirectory.utils.TodoRecyclerViewAdapter;
 import com.example.todo_app.viewmodel.TodoViewModel;
-import com.google.android.material.transition.Hold;
-import com.google.android.material.transition.MaterialContainerTransform;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.transition.MaterialElevationScale;
 
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.TimeUnit;
 
 public class FragmentHomeScreen extends Fragment {
 
@@ -125,9 +121,13 @@ public class FragmentHomeScreen extends Fragment {
             recyclerViewAdapter.submitList(notes);
         });
 
-        recyclerViewAdapter.setOnTodoItemDeleteListener(item ->
-                todoViewModel.delete(item)
-        );
+        recyclerViewAdapter.setOnTodoItemDeleteListener(item -> {
+            AlertDialog dialog = new MaterialAlertDialogBuilder(requireContext(), R.style.AlertDialogStyle).setTitle("Are you sure?")
+                    .setMessage("Are you sure to delete this item?").setPositiveButton("YES", (a, b) -> todoViewModel.delete(item)).setNegativeButton("NO", null).
+                            create();
+            dialog.show();
+
+        });
 
         recyclerViewAdapter.setOnItemsAdded(this::startPostponedEnterTransition);
 

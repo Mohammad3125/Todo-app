@@ -35,5 +35,9 @@
         <item name="itemTextAppearance">?attr/textAppearanceBody2</item>
     </style>
 
+    <style name="AlertDialogStyle" parent="ThemeOverlay.MaterialComponents.Dialog.Alert">
+        <item name="shapeAppearance">?shapeAppearanceMediumComponent</item>
+    </style>
+
 
 </resources>
