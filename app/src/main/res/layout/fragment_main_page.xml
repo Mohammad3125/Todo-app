@@ -95,6 +95,7 @@
             android:layout_marginTop="10dp"
             android:background="?colorSurface"
             android:translationZ="2dp"
+            android:animationCache="true"
             app:layout_behavior="@string/appbar_scrolling_view_behavior"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
