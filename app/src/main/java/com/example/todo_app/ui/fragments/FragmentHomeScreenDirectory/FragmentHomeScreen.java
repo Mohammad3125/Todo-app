@@ -122,7 +122,7 @@ public class FragmentHomeScreen extends Fragment {
         });
 
         recyclerViewAdapter.setOnTodoItemDeleteListener(item -> {
-            AlertDialog dialog = new MaterialAlertDialogBuilder(requireContext(), R.style.AlertDialogStyle).setTitle("Are you sure?")
+            AlertDialog dialog = new MaterialAlertDialogBuilder(requireContext(), R.style.AlertDialogStyle).setTitle("Deleting Item")
                     .setMessage("Are you sure to delete this item?").setPositiveButton("YES", (a, b) -> todoViewModel.delete(item)).setNegativeButton("NO", null).
                             create();
             dialog.show();

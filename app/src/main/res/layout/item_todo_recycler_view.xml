@@ -10,7 +10,7 @@
     android:orientation="horizontal"
     android:translationZ="3dp"
     android:id="@+id/item_shared_element"
-    app:cardElevation="1dp">
+    app:cardElevation="3dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"

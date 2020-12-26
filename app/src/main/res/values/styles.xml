@@ -39,5 +39,8 @@
         <item name="shapeAppearance">?shapeAppearanceMediumComponent</item>
     </style>
 
+    <style name="TextInputLayoutCustomStyle" parent="Widget.Design.TextInputLayout">
+
+    </style>
 
 </resources>
